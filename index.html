@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven SEO Platform</title>
+    <style>
+        :root {
+            --primary-dark: #0d0118;
+            --primary-purple: #2a0e4a;
+            --accent-purple: #6734b5;
+            --text-light: #f5f5f7;
+            --text-secondary: #b3b3cc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #6734b5, #8147e5);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #6734b5;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 0 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            background-color: var(--primary-purple);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 2rem 0 4rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard-preview img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* Logos Section */
+        .trusted-by {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trusted-by p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .client-logo {
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        /* Features Section */
+        .features-text {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .features-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0 4rem;
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard Features */
+        .dashboard-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+
+        .feature-image {
+            background-color: var(--primary-purple);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .feature-details h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-details p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Metrics & Animation */
+        .metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .metric-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #6734b5;
+        }
+
+        .metric-bar-container {
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .metric-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6734b5, #8147e5);
+            border-radius: 5px;
+            width: 0;
+            animation: barGrow 2s forwards;
+        }
+
+        @keyframes barGrow {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--target-width);
+            }
+        }
+
+        /* Testimonials */
+        .testimonials {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-details h4 {
+            font-size: 1rem;
+        }
+
+        .author-details p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background-color: var(--accent-purple);
+            border-radius: 13px;
+            cursor: pointer;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-card.highlighted {
+            background-color: var(--primary-purple);
+            border: 1px solid var(--accent-purple);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-features {
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-feature-icon {
+            color: var(--accent-purple);
+        }
+
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .dashboard-features {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SEOPTIMIZE</div>
+                <div class="nav-links">
+                    <a href="#">Features</a>
+                    <a href="#">Integrations</a>
+                    <a href="#">Solutions</a>
+                    <a href="#">Tools</a>
+                    <a href="#">Company</a>
+                </div>
+                <button class="btn">Sign Up Free</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span>Easy integration with several tools</span>
+            <h1>Boost your rankings with AI.</h1>
+            <p>Elevate your search ranking performance with AI. World smart technology meets user-friendly SEO tools.</p>
+            <button class="btn">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <div class="container">
+        <div class="dashboard-preview">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDEwMDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWExMzFjIi8+CiAgPCEtLSBIZWFkZXIgLT4KICA8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSI5NjAiIGhlaWdodD0iNDAiIGZpbGw9IiMxZDE0MmMiIHJ4PSI4Ii8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iOCIgZmlsbD0iIzY3MzRiNSIvPgogIDxjaXJjbGUgY3g9IjcwIiBjeT0iNDAiIHI9IjgiIGZpbGw9IiM4MTQ3ZTUiLz4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSI0MCIgcj0iOCIgZmlsbD0iI2E2NjRmZiIvPgogIAogIDwhLS0gU2lkZWJhciAtLT4KICA8cmVjdCB4PSIyMCIgeT0iODAiIHdpZHRoPSIyMDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMWQxNDJjIiByeD0iOCIvPgogIDxyZWN0IHg9IjQwIiB5PSIxMDAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzAiIGZpbGw9IiMyZjIwNGIiIHJ4PSI0Ii8+CiAgPHJlY3QgeD0iNDAiIHk9IjE1MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzJmMjA0YiIgcng9IjQiLz4KICA8cmVjdCB4PSI0MCIgeT0iMjAwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMmYyMDRiIiByeD0iNCIvPgogIDxyZWN0IHg9IjQwIiB5PSIyNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzAiIGZpbGw9IiMyZjIwNGIiIHJ4PSI0Ii8+CiAgPHJlY3QgeD0iNDAiIHk9IjMwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzJmMjA0YiIgcng9IjQiLz4KICA8c
